@@ -7,11 +7,11 @@ public class EVENTOS implements Serializable {
    
 private String estilo;
 
-private String distancia;
+private int distancia;
 
 private double record;
 
-    public EVENTOS(String estilo, String distancia, double record) {
+    public EVENTOS(String estilo, int distancia, double record) {
         this.estilo = estilo;
         this.distancia = distancia;
         this.record = record;
@@ -25,11 +25,11 @@ private double record;
         this.estilo = estilo;
     }
 
-    public String getDistancia() {
+    public int getDistancia() {
         return distancia;
     }
 
-    public void setDistancia(String distancia) {
+    public void setDistancia(int distancia) {
         this.distancia = distancia;
     }
 
