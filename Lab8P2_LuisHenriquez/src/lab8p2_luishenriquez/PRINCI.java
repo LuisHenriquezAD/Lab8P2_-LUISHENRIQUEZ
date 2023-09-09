@@ -84,6 +84,10 @@ public class PRINCI extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         ev = new javax.swing.JTable();
         jLabel20 = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -253,6 +257,39 @@ public class PRINCI extends javax.swing.JFrame {
 
         jLabel20.setText("LISTAR JUGADORES");
 
+        jButton6.setText("ELIMINAR");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("ELIMINAR");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
+
+        jButton8.setText("MODIFICAR");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
+
+        jButton9.setText("MODIFICAR");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -349,18 +386,21 @@ public class PRINCI extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(5, 5, 5)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jScrollPane1)
                             .addComponent(sec, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(167, 167, 167)
                         .addComponent(jLabel20))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane2)
-                        .addComponent(tv, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 456, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2)
+                    .addComponent(tv, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(415, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -441,6 +481,14 @@ public class PRINCI extends javax.swing.JFrame {
                         .addComponent(sec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton6)
+                            .addComponent(jButton7))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton8)
+                            .addComponent(jButton9))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel20)
@@ -558,12 +606,12 @@ public class PRINCI extends javax.swing.JFrame {
             fw = new FileOutputStream(fichero);
             bw = new ObjectOutputStream(fw);
 
-            String nombres = nomb.getText();
-            nomb.setText("");
             DefaultComboBoxModel modeloCB = (DefaultComboBoxModel) paises.getModel();
             int seleccion = paises.getSelectedIndex();
             String nacionalidad = modeloCB.getElementAt(seleccion).toString();
-            //nacio.setText("");
+
+            String nombres = nomb.getText();
+            nomb.setText("");
 
             int edads = Integer.parseInt(edad.getValue().toString());
             edad.setValue(0);
@@ -580,6 +628,29 @@ public class PRINCI extends javax.swing.JFrame {
             int medals = Integer.parseInt(medallas.getValue().toString());
             medallas.setValue(0);
 
+            int ME = 2;
+            int NE = 0;
+            /*
+            for (NADADORES NNE : pais.get(seleccion).getNadadores()) {
+                if (NNE.getEstilo().equals(estil)) {
+                    NE++;
+                }
+            }
+
+            if (NE < ME) {
+
+                nadador.add(new NADADORES(nombres, nacionalidad, edads, est, estil, distanc, rec, medals));
+                pais.get(seleccion).getNadadores().add(nadador);
+            } else {
+                
+                JOptionPane.showMessageDialog(this, "Se ha alcanzado el limite de nadadores para este estilo en este paius.");
+                estil = JOptionPane.showInputDialog(this,"Ingrese el estilo nuevo");
+            }
+            */
+            
+            
+            
+            
             nadador.add(new NADADORES(nombres, nacionalidad, edads, est, estil, distanc, rec, medals));
 
             int index = paises.getSelectedIndex();
@@ -636,6 +707,13 @@ public class PRINCI extends javax.swing.JFrame {
 
             evento.add(new EVENTOS(estiloo, diss, recoo));
 
+            DefaultComboBoxModel mod = (DefaultComboBoxModel) tv.getModel();
+
+            String simon = "Evento #" + conta;
+
+            mod.addElement(simon);
+
+            conta++;
             bw.writeObject(evento);
 
             bw.flush();
@@ -697,29 +775,143 @@ public class PRINCI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4MouseClicked
 
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
-        int ok = sec.getSelectedIndex();
-        DefaultTableModel modelo = (DefaultTableModel) tablan.getModel();
+
+        DefaultTableModel modelo = (DefaultTableModel) ev.getModel();
         while (modelo.getRowCount() > 0) {
             modelo.removeRow(0);
         }
 
-        DefaultComboBoxModel modeloCB = (DefaultComboBoxModel) sec.getModel();
-
         for (EVENTOS n : evento) {
 
-            Object[] row = new Object[7];
+            Object[] row = new Object[3];
             row[0] = n.getEstilo();
             row[1] = n.getDistancia();
             row[2] = n.getRecord();
-             
 
             modelo.addRow(row);
 
         }
 
-        tablan.setModel(modelo);
+        ev.setModel(modelo);
 
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        DefaultTableModel modelo = (DefaultTableModel) tablan.getModel();
+        String input = JOptionPane.showInputDialog(this, "Ingrese el numero a eliminar:");
+        if (input != null && !input.isEmpty()) {
+            try {
+                int el = Integer.parseInt(input);
+                if (el >= 0 && el < modelo.getRowCount()) {
+
+                    nadador.remove(el);
+                    modelo.removeRow(el);
+                } else {
+                    JOptionPane.showMessageDialog(this, "Numero de fila no valido.");
+                }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(this, "INVALIDO");
+            }
+        }
+
+
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        DefaultTableModel modelo = (DefaultTableModel) ev.getModel();
+        String input = JOptionPane.showInputDialog(this, "Ingrese el numero a eliminar:");
+        if (input != null && !input.isEmpty()) {
+
+            int el = Integer.parseInt(input);
+            if (el >= 0 && el < modelo.getRowCount()) {
+
+                evento.remove(el);
+                modelo.removeRow(el);
+            } else {
+                JOptionPane.showMessageDialog(this, "Numero de fila no valido.");
+            }
+        }
+
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        DefaultTableModel modelo = (DefaultTableModel) ev.getModel();
+        String SI = JOptionPane.showInputDialog(this, "Ingrese el numero de fila a modificar:");
+        if (SI != null && !SI.isEmpty()) {
+
+            int mod = Integer.parseInt(SI);
+            if (mod >= 0 && mod < modelo.getRowCount()) {
+
+                String NE = JOptionPane.showInputDialog(this, "Ingrese el nuevo estilo:");
+                String ND = JOptionPane.showInputDialog(this, "Ingrese la nueva distancia:");
+                String NR = JOptionPane.showInputDialog(this, "Ingrese el nuevo recorrido:");
+
+                int NND = Integer.parseInt(ND);
+                double NNR = Double.parseDouble(NR);
+
+                EVENTOS eventoModificado = evento.get(mod);
+                eventoModificado.setEstilo(NE);
+                eventoModificado.setDistancia(NND);
+                eventoModificado.setRecord(NNR);
+
+                modelo.setValueAt(NE, mod, 0);
+                modelo.setValueAt(NND, mod, 1);
+                modelo.setValueAt(NNR, mod, 2);
+            } else {
+                JOptionPane.showMessageDialog(this, "Numero de fila no valido.");
+            }
+
+        }
+
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        DefaultTableModel modelo = (DefaultTableModel) tablan.getModel();
+        String SI = JOptionPane.showInputDialog(this, "Ingrese el numero de fila a modificar:");
+        if (SI != null && !SI.isEmpty()) {
+
+            int mod = Integer.parseInt(SI);
+            if (mod >= 0 && mod < modelo.getRowCount()) {
+                String NE = JOptionPane.showInputDialog(this, "Ingrese el nuevo nombre:");
+                String NED = JOptionPane.showInputDialog(this, "Ingrese la nueva edad:");
+                String NEst = JOptionPane.showInputDialog(this, "Ingrese la nueva estatura:");
+                String NEstilo = JOptionPane.showInputDialog(this, "Ingrese el nuevo estilo:");
+                String NDistancia = JOptionPane.showInputDialog(this, "Ingrese la nueva distancia:");
+                String NRecorrido = JOptionPane.showInputDialog(this, "Ingrese el nuevo recorrido:");
+                String NMedallas = JOptionPane.showInputDialog(this, "Ingrese la nueva cantidad de medallas:");
+
+                int NEdad = Integer.parseInt(NED);
+                int NEstatura = Integer.parseInt(NEst);
+                int NDist = Integer.parseInt(NDistancia);
+                double NRec = Double.parseDouble(NRecorrido);
+                int NMed = Integer.parseInt(NMedallas);
+
+                NADADORES nadadorModificado = nadador.get(mod);
+                nadadorModificado.setNombre(NE);
+                nadadorModificado.setEdad(NEdad);
+                nadadorModificado.setEstatura(NEstatura);
+                nadadorModificado.setEstilo(NEstilo);
+                nadadorModificado.setDistancia(NDist);
+                nadadorModificado.setRecord(NRec);
+                nadadorModificado.setMedallas(NMed);
+
+                modelo.setValueAt(NE, mod, 0);
+                modelo.setValueAt(NEdad, mod, 1);
+                modelo.setValueAt(NEstatura, mod, 2);
+                modelo.setValueAt(NEstilo, mod, 3);
+                modelo.setValueAt(NDist, mod, 4);
+                modelo.setValueAt(NRec, mod, 5);
+                modelo.setValueAt(NMed, mod, 6);
+            } else {
+                JOptionPane.showMessageDialog(this, "INVALIDO");
+            }
+
+        }
+    }//GEN-LAST:event_jButton9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -769,6 +961,10 @@ public class PRINCI extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -805,4 +1001,5 @@ public class PRINCI extends javax.swing.JFrame {
 ArrayList<PAISES> pais = new ArrayList<>();
     ArrayList<NADADORES> nadador = new ArrayList<>();
     ArrayList<EVENTOS> evento = new ArrayList<>();
+    int conta = 1;
 }
